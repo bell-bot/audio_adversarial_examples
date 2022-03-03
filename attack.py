@@ -19,7 +19,7 @@ import os
 import sys
 import random
 from collections import namedtuple
-from MLP_Group_Project.src.adversarial_examples.generate_target_sents import get_inaugural_sentences
+from MLP_Group_Project.audio_adversarial_examples.generate_target_sents import get_inaugural_sentences
 sys.path.append("DeepSpeech")
 
 
