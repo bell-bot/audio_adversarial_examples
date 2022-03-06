@@ -1,13 +1,14 @@
  # Get all paragraphs from the nltk inaugural speech corpus and save them to a list of strings
  # and merge texts into one list
-
+import nltk
+nltk.download("inaugural")
 from nltk.corpus import inaugural
 import random
 
 
 def get_inaugural_sentences():
     # Get the fileids for all speeches
-    fileids = inaugural.fileids()[0:10]
+    fileids = inaugural.fileids()
 
     # Initialize paragraphs to be an empty list
     paras = []
@@ -20,4 +21,5 @@ def get_inaugural_sentences():
 
             paras.append(joined_sents)
 
-    return random.shuffle(paras)
+    random.shuffle(paras)
+    return paras
