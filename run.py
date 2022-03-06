@@ -10,7 +10,7 @@ def main():
     filenames = ["/audio_adversarial_examples/data/" + filename for filename in os.listdir("/audio_adversarial_examples/data/")]
     for i in range(len(filenames)):
         filename = filenames[i]
-        para = paras[i]
+        #para = paras[i]
         out = [filename[:-4]+"_adversarial.wav"]
         attack.main(inp = [filename], target = "This is a test please work or else", out = out, iterations = 1000)
 
