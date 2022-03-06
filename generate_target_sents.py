@@ -2,6 +2,7 @@
  # and merge texts into one list
 import nltk
 nltk.download("inaugural")
+nltk.download("punkt")
 from nltk.corpus import inaugural
 import random
 
