@@ -17,10 +17,21 @@ def get_inaugural_sentences():
     for id in fileids:
         p = inaugural.paras(id)
         for paragraph in p:
-            sents = [" ".join(w for w in sent if w.isalpha()) for sent in paragraph]
+            sents = [" ".join(w for w in sent if if valid_word(w)) for sent in paragraph]
             joined_sents = " ".join(sents)
 
             paras.append(joined_sents)
 
     random.shuffle(paras)
     return paras
+   
+def valid_word(word):
+
+    # Only allow the following tokens
+    toks = " abcdefghijklmnopqrstuvwxyz'-"
+
+    for i in word:
+        if not(i in toks):
+            return False
+
+    return True
