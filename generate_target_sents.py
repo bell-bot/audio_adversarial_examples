@@ -17,7 +17,7 @@ def get_inaugural_sentences():
     for id in fileids:
         p = inaugural.paras(id)
         for paragraph in p:
-            sents = [" ".join(w for w in sent if if valid_word(w)) for sent in paragraph]
+            sents = [" ".join(w for w in sent if valid_word(w)) for sent in paragraph]
             joined_sents = " ".join(sents)
 
             paras.append(joined_sents)
