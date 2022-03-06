@@ -268,10 +268,10 @@ def main(inp = [], target = None, out = [], iterations = None, restore_path = Tr
     """
     parser = argparse.ArgumentParser(description=None)
     parser.add_argument('--in', type=str, dest="input", nargs='+',
-                        required=True,
+                        required=False,
                         help="Input audio .wav file(s), at 16KHz (separated by spaces)")
     parser.add_argument('--target', type=str,
-                        required=True,
+                        required=False,
                         help="Target transcription")
     parser.add_argument('--out', type=str, nargs='+',
                         required=False,
@@ -295,7 +295,7 @@ def main(inp = [], target = None, out = [], iterations = None, restore_path = Tr
                         required=False,
                         help="Generate MP3 compression resistant adversarial examples")
     parser.add_argument('--restore_path', type=str,
-                        required=True,
+                        required=False,
                         help="Path to the DeepSpeech checkpoint (ending in model0.4.1)")
     args = parser.parse_args()
     while len(sys.argv) > 1:
