@@ -12,7 +12,7 @@ def main():
         filename = filenames[i]
         #para = paras[i]
         out = [filename[:-4]+"_adversarial.wav"]
-        attack.main(inp = [filename], target = "This is a test please work or else", out = out, iterations = 1000)
+        attack.main(inp = [filename], target = "this is a test please work or else", out = out, iterations = 1000)
 
 
 main()
