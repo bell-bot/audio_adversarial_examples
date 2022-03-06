@@ -6,10 +6,9 @@
 ## contained in the LICENCE file in this directory.
 
 import numpy as np
-
+import tensorflow as tf
 import argparse
 from shutil import copyfile
-import tensorflow as tf
 
 import scipy.io.wavfile as wav
 
@@ -17,11 +16,8 @@ import struct
 import time
 import os
 import sys
-import random
 from collections import namedtuple
-from MLP_Group_Project.audio_adversarial_examples.generate_target_sents import get_inaugural_sentences
 sys.path.append("DeepSpeech")
-
 
 try:
     import pydub
@@ -32,7 +28,6 @@ import DeepSpeech
 
 from tensorflow.python.keras.backend import ctc_label_dense_to_sparse
 from tf_logits import get_logits
-
 
 # These are the tokens that we're allowed to use.
 # The - token is special and corresponds to the epsilon
@@ -56,7 +51,6 @@ class Attack:
                  mp3=False, l2penalty=float('inf'), restore_path=None):
         """
         Set up the attack procedure.
-
         Here we create the TF graph that we're going to use to
         actually generate the adversarial examples.
         """
@@ -264,22 +258,20 @@ class Attack:
         return final_deltas
     
     
-def main():
+def main(inp = [], target = None, out = [], iterations = None, restore_path = True):
     """
     Do the attack here.
-
     This is all just boilerplate; nothing interesting
     happens in this method.
-
     For now we only support using CTC loss and only generating
     one adversarial example at a time.
     """
     parser = argparse.ArgumentParser(description=None)
     parser.add_argument('--in', type=str, dest="input", nargs='+',
-                        required=False,
+                        required=True,
                         help="Input audio .wav file(s), at 16KHz (separated by spaces)")
     parser.add_argument('--target', type=str,
-                        required=False,
+                        required=True,
                         help="Target transcription")
     parser.add_argument('--out', type=str, nargs='+',
                         required=False,
@@ -313,31 +305,18 @@ def main():
         finetune = []
         audios = []
         lengths = []
-        inputs = []
-        targets = []
 
         if args.out is None:
-            assert args.outprefix is not None
+            assert args.outprefix is not None or out is not None
         else:
             assert args.outprefix is None
-            assert len(args.input) == len(args.out)
+            assert len(inp) == len(out)
         if args.finetune is not None and len(args.finetune):
-            assert len(args.input) == len(args.finetune)
-
-        # Load inputs from the sph2wav directory
-        if args.inputs is None:
-            inputs = [file for file in os.listdir("/Data/sph2wav/src") if file.endswith(".wav")]
-        else :
-            inputs = args.inputs
-        
-        if args.targets is None:
-            targets = get_inaugural_sentences()[:len(inputs)]
-        else:
-            targets = args.targets
+            assert len(inp) == len(args.finetune)
         
         # Load the inputs that we're given
-        for i in range(len(inputs)):
-            fs, audio = wav.read(args.input[i])
+        for i in range(len(inp)):
+            fs, audio = wav.read(inp[i])
             assert fs == 16000
             assert audio.dtype == np.int16
             print('source dB', 20*np.log10(np.max(np.abs(audio))))
@@ -350,38 +329,34 @@ def main():
         maxlen = max(map(len,audios))
         audios = np.array([x+[0]*(maxlen-len(x)) for x in audios])
         finetune = np.array([x+[0]*(maxlen-len(x)) for x in finetune])
-        
-        for i in range(len(inputs)):
-            audio = audios[i]
-            phrase = targets[i]
 
-            # Set up the attack class and run it
-            attack = Attack(sess, 'CTC', len(phrase), maxlen,
-                            batch_size=len(audios),
-                            mp3=args.mp3,
-                            learning_rate=args.lr,
-                            num_iterations=args.iterations,
-                            l2penalty=args.l2penalty,
-                            restore_path=args.restore_path)
-            deltas = attack.attack([audio],
-                                lengths,
-                                [[toks.index(x) for x in phrase]]*len([audio]),
-                                finetune)
+        phrase = target
 
-            # And now save it to the desired output
-            if args.mp3:
-                convert_mp3(deltas, lengths)
-                copyfile("/tmp/saved.mp3", args.out[0])
-                print("Final distortion", np.max(np.abs(deltas[0][:lengths[0]]-audios[0][:lengths[0]])))
-            else:
-                for i in range(len(args.input)):
-                    if args.out is not None:
-                        path = args.out[i]
-                    else:
-                        path = args.outprefix+str(i)+".wav"
-                    wav.write(path, 16000,
-                            np.array(np.clip(np.round(deltas[i][:lengths[i]]),
-                                            -2**15, 2**15-1),dtype=np.int16))
-                    print("Final distortion", np.max(np.abs(deltas[i][:lengths[i]]-audios[i][:lengths[i]])))
+        # Set up the attack class and run it
+        attack = Attack(sess, 'CTC', len(phrase), maxlen,
+                        batch_size=len(audios),
+                        mp3=args.mp3,
+                        learning_rate=args.lr,
+                        num_iterations=args.iterations,
+                        l2penalty=args.l2penalty,
+                        restore_path=restore_path)
+        deltas = attack.attack(audios,
+                               lengths,
+                               [[toks.index(x) for x in phrase]]*len(audios),
+                               finetune)
 
-main()
+        # And now save it to the desired output
+        if args.mp3:
+            convert_mp3(deltas, lengths)
+            copyfile("/tmp/saved.mp3", out[0])
+            print("Final distortion", np.max(np.abs(deltas[0][:lengths[0]]-audios[0][:lengths[0]])))
+        else:
+            for i in range(len(inp)):
+                if out is not None:
+                    path = out[i]
+                else:
+                    path = args.outprefix+str(i)+".wav"
+                wav.write(path, 16000,
+                          np.array(np.clip(np.round(deltas[i][:lengths[i]]),
+                                           -2**15, 2**15-1),dtype=np.int16))
+                print("Final distortion", np.max(np.abs(deltas[i][:lengths[i]]-audios[i][:lengths[i]])))
