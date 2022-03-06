@@ -258,7 +258,7 @@ class Attack:
         return final_deltas
     
     
-def main(inp = [], target = None, out = [], iterations = None, restore_path = True):
+def main(inp = [], target = None, out = [], iterations = None, restore_path = "deepspeech-0.4.1-checkpoint/model.v0.4.1"):
     """
     Do the attack here.
     This is all just boilerplate; nothing interesting
