@@ -7,7 +7,7 @@ def main():
     #paras = get_inaugural_sentences()
 
     # Get the wav files
-    filenames = ["/audio_adversarial_examples/data/" + filename for filename in os.listdir("/audio_adversarial_examples/data/")]
+    filenames = ["/audio_adversarial_examples/test_data/" + filename for filename in os.listdir("/audio_adversarial_examples/test_data/")]
     for i in range(len(filenames)):
         filename = filenames[i]
         #para = paras[i]
