@@ -11,7 +11,7 @@ def main():
     for i in range(len(filenames)):
         filename = filenames[i]
         para = paras[i]
-        out = ["adversarial_" + filename]
+        out = [filename[:-4]+"_adversarial.wav"]
         attack.main(inp = [filename], target = para, out = out, iterations = 1000)
 
 
