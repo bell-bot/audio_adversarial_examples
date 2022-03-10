@@ -1,4 +1,4 @@
-# -*- coding: future_fstrings -*-
+
 import os
 from re import L
 from typing import Dict, Tuple
@@ -6,7 +6,8 @@ import sys
 import logging
 import numpy
 import regex as re
-import torchaudio.datasets.tedlium as tedilum 
+# import torchaudio.datasets.tedlium as tedlium 
+from Data import tedlium_local as tedlium
 import torchaudio
 from torch import Tensor
 import pandas as pd
@@ -15,7 +16,7 @@ from utils import get_git_root
 from Preprocessing.pre_processing import resample_audio
 
 """Specify path to TEDLIUM directory"""
-data_paths = os.path.join(get_git_root(os.getcwd()),'Data')
+data_paths = os.path.join(get_git_root(os.getcwd()), 'Data')
 DATASET_TEDLIUM_PATH = data_paths
 DATASET_MLCOMMONS_PATH = data_paths
 KEYWORDS_LINK_CSV_PATH = os.path.join(data_paths, "keywords.csv")
@@ -61,7 +62,7 @@ class LabelsCSVHeaders:
 
 
 #TODO! Customise for each subset, in speaker-adaptation. Might require changing the metadata
-class TEDLIUMCustom(tedilum.TEDLIUM):
+class TEDLIUMCustom(tedlium.TEDLIUM):
     """
     Please have a directory with the TEDLIUM dataset downloaded (release-3).
     Instance Variables: 
@@ -77,7 +78,7 @@ class TEDLIUMCustom(tedilum.TEDLIUM):
     def __init__(self, root=DATASET_TEDLIUM_PATH, release= "release3", subset=None):
         super().__init__(root, release=release)
      
-        path_to_speaker_adaptation = os.path.join(root, tedilum._RELEASE_CONFIGS[release]["folder_in_archive"], "speaker-adaptation")
+        path_to_speaker_adaptation = os.path.join(root, tedlium._RELEASE_CONFIGS[release]["folder_in_archive"], "speaker-adaptation")
         train_audio_sets = set(line.strip() for line in open(os.path.join(path_to_speaker_adaptation, "train.lst")))
         dev_audio_sets = set(line.strip() for line in open(os.path.join(path_to_speaker_adaptation, "dev.lst")))
         test_audio_sets = set(line.strip() for line in open(os.path.join(path_to_speaker_adaptation, "test.lst")))
@@ -279,7 +280,7 @@ class CTRLF_DatasetWrapper:
     
     def get(self, TEDSample_id: int):
         """
-        Given Ted Sample ID and the dataset type, return the corresponding data from Ted audio sample and Keyword recording data
+        Given Ted Sample ID and the dataset type, return three separate corresponding dictionaries.
         Returns:
             TED_results_dict:
                 { 
@@ -350,7 +351,6 @@ if __name__== "__main__":
     print("CTRL_F Wrapper") 
 
     x= CTRLF_DatasetWrapper()
-    print(x.labels_df.iloc[0])
     Ted_dict, MSWC_dict, label_dict= x.get(0)
     print(Ted_dict)
     print(MSWC_dict)
