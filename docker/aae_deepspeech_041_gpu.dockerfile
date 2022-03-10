@@ -6,10 +6,10 @@ RUN alias ipython='ipython3'
 RUN alias ..='cd ..'
 
 # Add 3.7 to the available alternatives
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+RUN update-alternatives --install /usr/bin/python python /opt/conda/bin/python 1
 
 # Set python3.7 as the default python
-RUN update-alternatives --set python /usr/bin/python3.7
+RUN update-alternatives --set python /opt/conda/bin/python
 
 
 RUN apt-get update -y && apt-get install -y \
