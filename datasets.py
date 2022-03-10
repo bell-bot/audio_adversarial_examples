@@ -176,7 +176,7 @@ class MultiLingualSpokenWordsEnglish():
 
     def raise_directory_error(self):
         raise RuntimeError(
-            f"Please configure the path to the Spoken Keywords Dataset, with the directory name \"{self.MLCOMMONS_FOLDER_NAME}\", containing the three subfolders:" + "\n" + f"\"{self.AUDIO_DIR_NAME}\" for audio, \"{self.SPLITS_DIR_NAME}\" for splits directory, and \"{self.ALIGNMENTS_DIR_NAME}\" for alignemnts directory"
+            f"Err"
         )
 
     #TODO! Accept 4 kinds of values: Train vs test vs Dev vs "all"
