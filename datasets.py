@@ -175,9 +175,7 @@ class MultiLingualSpokenWordsEnglish():
  
 
     def raise_directory_error(self):
-        raise RuntimeError(
-            f"Err"
-        )
+        pass
 
     #TODO! Accept 4 kinds of values: Train vs test vs Dev vs "all"
     def __init__(self, root=DATASET_MLCOMMONS_PATH, read_splits_file=False, subset="train") -> None:
