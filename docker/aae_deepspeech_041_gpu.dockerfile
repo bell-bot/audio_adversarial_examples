@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.12.0-gpu-py3
+FROM tensorflow/tensorflow:latest-gpu-jupyter
 
 RUN alias pip='pip3'
 RUN alias python='python3'
