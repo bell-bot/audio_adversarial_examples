@@ -147,9 +147,6 @@ websocket-client==0.56.0 \
 Werkzeug==0.15.4 \
 widgetsnbextension==3.5.1 \
 wrapt==1.11.2
-pipwin
-
-RUN pipwin install pyaudio
 
 
 RUN git clone -b tags/v0.4.1_pin_numpy https://github.com/tom-doerr/DeepSpeech 
