@@ -8,7 +8,7 @@ def main():
     # Load the inaugural sentences as targets
     #paras = get_inaugural_sentences()
 
-    x = CTRLF_DatasetWrapper(path_to_labels_csv = "/audio_adversarial_examples/Data", path_to_TED="/audio_adversarial_examples/Data")
+    x = CTRLF_DatasetWrapper(path_to_labels_csv = "/audio_adversarial_examples/Data/", path_to_TED="/audio_adversarial_examples/Data/")
 
     num_files = 100
 

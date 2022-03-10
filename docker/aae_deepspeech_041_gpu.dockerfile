@@ -5,13 +5,6 @@ RUN alias python='python3'
 RUN alias ipython='ipython3'
 RUN alias ..='cd ..'
 
-# Add 3.7 to the available alternatives
-RUN update-alternatives --install /usr/bin/python python /opt/conda/bin/python 1
-
-# Set python3.7 as the default python
-RUN update-alternatives --set python /opt/conda/bin/python
-
-
 RUN apt-get update -y && apt-get install -y \
  swig \
  sox \
@@ -26,6 +19,8 @@ RUN apt-get update -y && apt-get install -y \
  ffmpeg \
  python3-levenshtein
                                                    
+
+RUN pip install --upgrade pip
 
 # Packages from 'pip3 freeze' output minus packages that 
 # could not be installed via pip.
@@ -153,7 +148,11 @@ webencodings==0.5.1 \
 websocket-client==0.56.0 \
 Werkzeug==0.15.4 \
 widgetsnbextension==3.5.1 \
-wrapt==1.11.2
+wrapt==1.11.2\
+moviepy \
+regex \
+torchaudio \
+moviepy 
 
 
 RUN git clone -b tags/v0.4.1_pin_numpy https://github.com/tom-doerr/DeepSpeech 
