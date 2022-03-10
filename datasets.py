@@ -1,4 +1,4 @@
-
+# -*- coding: future_fstrings -*-
 import os
 from re import L
 from typing import Dict, Tuple
@@ -175,7 +175,11 @@ class MultiLingualSpokenWordsEnglish():
  
 
     def raise_directory_error(self):
-        pass
+        raise RuntimeError(
+            f"Please configure the path to the Spoken Keywords Dataset, with the directory name \"{self.MLCOMMONS_FOLDER_NAME}\", containing the three subfolders:" \
+            + "\n" + \
+            f"\"{self.AUDIO_DIR_NAME}\" for audio, \"{self.SPLITS_DIR_NAME}\" for splits directory, and \"{self.ALIGNMENTS_DIR_NAME}\" for alignemnts directory"
+        )
 
     #TODO! Accept 4 kinds of values: Train vs test vs Dev vs "all"
     def __init__(self, root=DATASET_MLCOMMONS_PATH, read_splits_file=False, subset="train") -> None:
