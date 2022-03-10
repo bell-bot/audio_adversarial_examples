@@ -1,4 +1,4 @@
-
+# -*- coding: future_fstrings -*-
 import os
 from re import L
 from typing import Dict, Tuple
