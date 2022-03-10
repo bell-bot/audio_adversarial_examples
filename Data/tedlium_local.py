@@ -91,7 +91,7 @@ class TEDLIUM(Dataset):
             )
 
         # Get string representation of 'root' in case Path object is passed
-        root = os.fspath(root)
+        root = "/audio_adversarial_examples"
 
         basename = os.path.basename(url)
         archive = os.path.join(root, basename)
