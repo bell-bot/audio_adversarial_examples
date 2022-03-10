@@ -16,7 +16,7 @@ from utils import get_git_root
 from Preprocessing.pre_processing import resample_audio
 
 """Specify path to TEDLIUM directory"""
-data_paths = os.path.join(get_git_root(os.getcwd()), 'Data')
+data_paths = os.path.join("/audio_adversarial_examples", 'Data')
 DATASET_TEDLIUM_PATH = data_paths
 DATASET_MLCOMMONS_PATH = data_paths
 KEYWORDS_LINK_CSV_PATH = os.path.join(data_paths, "keywords.csv")
