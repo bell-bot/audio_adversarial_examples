@@ -15,7 +15,7 @@ def main():
     for i in range(num_files):
         sample = x.get(i)
         out_filename = str(i)+"_adversarial.wav"
-        para = paras[i]
+        #para = paras[i]
         attack.main(inp = [sample], target = "this is a test please work or else", out = out_filename, iterations = 100)
 
 
