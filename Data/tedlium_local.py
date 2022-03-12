@@ -112,8 +112,8 @@ class TEDLIUM(Dataset):
         for file in sorted(os.listdir(stm_path)):
             if file.endswith(".stm"):
                 stm_path = os.path.join(self._path, "stm", file)
-                with open(stm_path) as f:
-                    l = len(f.readlines(), encoding="utf-8")
+                with open(stm_path, encoding="utf-8") as f:
+                    l = len(f.readlines())
                     file = file.replace(".stm", "")
                     self._filelist.extend((file, line) for line in range(l))
         # Create dict path for later read
