@@ -17,13 +17,11 @@ def main():
         ted_results, mswc_result, label_dict = x.get(i)
         sample_waveform = ted_results.get("waveform")
         sample_rate = ted_results.get("sample_rate")
-        print(sample_waveform)
         filename = "temp_file.wav"
-        wav_file = sf.SoundFile(filename, "w")
-        wav_file.write(sample_waveform)
+        sf.write(filename, sample_waveform, sample_rate)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
-        attack.main(inp = [wav_file], target = "this is a test please work or else", out = out_filename, iterations = 100)
+        attack.main(inp = [filename], target = "this is a test please work or else", out = out_filename, iterations = 100)
 
 
 main()
