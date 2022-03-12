@@ -11,6 +11,7 @@ from Data import tedlium_local as tedlium
 import torchaudio
 from torch import Tensor
 import pandas as pd
+import librosa
 
 from utils import get_git_root
 from Preprocessing.pre_processing import resample_audio
@@ -233,9 +234,8 @@ class MultiLingualSpokenWordsEnglish():
             waveform: Tensor / np.array
             sample_rate: int
         """
-        waveform, sample_rate =  torchaudio.load(path_to_audio)
-        return (waveform.numpy(), sample_rate) if to_numpy else (waveform , sample_rate)
-
+        waveform, sample_rate = librosa.load(path_to_audio)
+        return (waveform, sample_rate)
 
 
     def __getitem__(self, MSWC_AudioID) -> Dict:
