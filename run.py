@@ -17,7 +17,7 @@ def main():
         ted_results, mswc_result, label_dict = x.get(i)
         sample_waveform = ted_results.get("waveform")
         sample_rate = ted_results.get("sample_rate")
-        filename = "temp_file.wav"
+        filename = "sample-000000.wav"
         sf.write(filename, sample_waveform, sample_rate)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
