@@ -21,6 +21,7 @@ def main():
         wav_file.setnchannels(1)
         wav_file.setsampwidth(len(sample_waveform))
         wav_file.writeframes(sample_waveform)
+        wav_file.setframerate(24)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
         attack.main(inp = [wav_file], target = "this is a test please work or else", out = out_filename, iterations = 100)
