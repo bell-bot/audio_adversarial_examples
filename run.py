@@ -16,6 +16,7 @@ def main():
     for i in range(num_files):
         ted_results, mswc_result, label_dict = x.get(i)
         sample_waveform = ted_results.get("waveform")
+        print(sample_waveform)
         filename = "temp_file"
         wav_file = swav.write(filename, len(sample_waveform), sample_waveform)
         out_filename = str(i)+"_adversarial.wav"
