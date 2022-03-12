@@ -3,7 +3,7 @@ import attack
 import os
 import datasets
 from datasets import CTRLF_DatasetWrapper
-from moviepy.audio.AudioClip import AudioArrayClip
+from moviepy.audio import AudioClip
 
 def main():
     # Load the inaugural sentences as targets
@@ -18,7 +18,7 @@ def main():
         sample_waveform = ted_results.get("waveform")
         sample_rate = ted_results.get("sample_rate")
         filename = "sample-000000.wav"
-        wav_file = AudioArrayClip(sample_waveform, fps = sample_rate)
+        wav_file = AudioClip(sample_waveform, fps = sample_rate)
         wav_file.write_audiofile(filename)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
