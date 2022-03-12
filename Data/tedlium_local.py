@@ -113,7 +113,7 @@ class TEDLIUM(Dataset):
             if file.endswith(".stm"):
                 stm_path = os.path.join(self._path, "stm", file)
                 with open(stm_path) as f:
-                    l = len(f.readlines())
+                    l = len(f.readlines(), encoding="utf-8")
                     file = file.replace(".stm", "")
                     self._filelist.extend((file, line) for line in range(l))
         # Create dict path for later read
@@ -158,7 +158,7 @@ class TEDLIUM(Dataset):
         start_time = int(float(start_time) * sample_rate)
         end_time = int(float(end_time) * sample_rate)
 
-        kwargs = {"frame_offset": start_time, "num_frames": end_time - start_time}
+        kwargs = {"offset": start_time, "num_frames": end_time - start_time}
 
         return torchaudio.load(path, **kwargs)
 
