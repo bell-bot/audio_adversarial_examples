@@ -10,15 +10,14 @@ def main():
 
     x = CTRLF_DatasetWrapper(path_to_labels_csv = "/audio_adversarial_examples/Data/", path_to_TED="/audio_adversarial_examples/Data/")
 
-    num_files = 100
+    num_files = 1
 
     for i in range(num_files):
         sample = x.get(i)
-        out_filename = f"{i}_adversarial.wav"
+        out_filename = str(i)+"_adversarial.wav"
         sample_waveform = sample[]
-        #para = paras[i]
-        #out = [filename[:-4]+"_adversarial.wav"]
-        #attack.main(inp = [filename], target = "this is a test please work or else", out = out, iterations = 1000)
+        para = paras[i]
+        attack.main(inp = [sample], target = "this is a test please work or else", out = out_filename, iterations = 100)
 
 
 main()
