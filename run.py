@@ -3,7 +3,7 @@ import attack
 import os
 import datasets
 from datasets import CTRLF_DatasetWrapper
-from moviepy.audio import AudioClip
+from moviepy.audio.AudioClip import AudioClip
 
 def main():
     # Load the inaugural sentences as targets
