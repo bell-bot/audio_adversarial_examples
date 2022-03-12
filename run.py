@@ -19,7 +19,8 @@ def main():
         sample_rate = ted_results.get("sample_rate")
         print(sample_waveform)
         filename = "temp_file.wav"
-        wav_file = sf.write(filename, sample_waveform, sample_rate)
+        wav_file = sf.SoundFile(filename, "w")
+        wav_file.write(sample_waveform)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
         attack.main(inp = [wav_file], target = "this is a test please work or else", out = out_filename, iterations = 100)
