@@ -16,9 +16,10 @@ def main():
     for i in range(num_files):
         ted_results, mswc_result, label_dict = x.get(i)
         sample_waveform = ted_results.get("waveform")
+        print(sample_waveform.shape)
         sample_rate = ted_results.get("sample_rate")
         filename = "sample-000000.wav"
-        wav_file = AudioClip(sample_waveform, fps = sample_rate)
+        wav_file = AudioClip(sample_waveform[0], fps = sample_rate)
         wav_file.write_audiofile(filename)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
