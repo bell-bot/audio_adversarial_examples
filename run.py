@@ -19,7 +19,7 @@ def main():
         print(sample_waveform[0].shape)
         sample_rate = ted_results.get("sample_rate")
         filename = "sample-000000.wav"
-        wav_file = AudioClip(sample_waveform[0], fps = sample_rate)
+        wav_file = AudioClip(sample_waveform.T, fps = sample_rate)
         wav_file.write_audiofile(filename)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
