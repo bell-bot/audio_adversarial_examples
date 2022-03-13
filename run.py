@@ -25,7 +25,7 @@ def main():
         wav_file.write_audiofile(filename)
         out_filename = str(i)+"_adversarial.wav"
         #para = paras[i]
-        attack.main(inp = [wav_file], target = "this is a test please work or else", out = out_filename, iterations = 100)
+        attack.main(inp = [filename], target = "this is a test", out = out_filename, iterations = 100)
 
 
 main()
