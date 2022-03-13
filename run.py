@@ -16,8 +16,9 @@ def main():
     for i in range(num_files):
         ted_results, mswc_result, label_dict = x.get(i)
         sample_waveform = ted_results.get("waveform")
-        sample_waveform = sample_waveform.reshape(sample_waveform.shape[0],1)
-        print(sample_waveform[0].shape)
+        print(sample_waveform.shape)
+        sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
+        print(sample_waveform.shape)
         sample_rate = ted_results.get("sample_rate")
         filename = "temp.wav"
         wav_file = AudioArrayClip(sample_waveform, fps = sample_rate)
