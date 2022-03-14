@@ -258,7 +258,7 @@ class Attack:
         return final_deltas
     
     
-def main(inp = [], target = None, out = [], iterations = None, restore_path = "deepspeech-0.4.1-checkpoint/model.v0.4.1"):
+def main(inp = [], target = None, out = "", iterations = None, restore_path = "deepspeech-0.4.1-checkpoint/model.v0.4.1"):
     """
     Do the attack here.
     This is all just boilerplate; nothing interesting
@@ -353,7 +353,7 @@ def main(inp = [], target = None, out = [], iterations = None, restore_path = "d
         else:
             for i in range(len(inp)):
                 if out is not None:
-                    path = out[i]
+                    path = out
                 else:
                     path = args.outprefix+str(i)+".wav"
                 wav.write(path, 16000,
