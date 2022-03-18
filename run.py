@@ -32,13 +32,12 @@ def main():
         # Extract the necessary information from the pandas dataframe
         sample_waveform = ted_results["TED_waveform"][0]
         sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
-        print(type(sample_waveform))
         sample_transcript = ted_results["TED_transcript"]
         sample_keyword = ted_results["keyword"]
         sample_subset = ted_results["TED_talk_id"]
         sample_id = "adversarial_" + str(i)
         sample_rate = ted_results["TED_sample_rate"]
-        print(sample_rate)
+        print(type(sample_rate))
         start_time = ted_results["keyword_start_time"]
         end_time = ted_results["keyword_end_time"]
         confidence = ted_results["confidence"]
