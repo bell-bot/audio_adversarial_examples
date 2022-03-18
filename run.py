@@ -36,7 +36,7 @@ def main():
         sample_keyword = ted_results["keyword"]
         sample_subset = ted_results["TED_talk_id"]
         sample_id = "adversarial_" + str(i)
-        sample_rate = ted_results["TED_sample_rate"]
+        sample_rate = ted_results["TED_sample_rate"][0]
         print(type(sample_rate[0]))
         start_time = ted_results["keyword_start_time"]
         end_time = ted_results["keyword_end_time"]
