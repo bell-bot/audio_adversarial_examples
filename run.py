@@ -31,7 +31,7 @@ def main():
         
         # Extract the necessary information from the pandas dataframe
         print(ted_results["TED_waveform"][0])
-        sample_waveform = ted_results["TED_waveform"][0].to_numpy()
+        sample_waveform = ted_results["TED_waveform"][0]
         print(sample_waveform.shape)
         sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
         sample_transcript = ted_results["TED_transcript"]
