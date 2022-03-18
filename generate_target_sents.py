@@ -24,6 +24,20 @@ def get_inaugural_sentences():
 
     random.shuffle(paras)
     return paras
+
+def get_inaugural_words():
+    # Get the fileids for all speeches
+    fileids = inaugural.fileids()
+
+    # Initialize paragraphs to be an empty list
+    all_words = []
+
+    for id in fileids:
+        words = inaugural.words(id)
+        all_words += [word for word in words if valid_word(word)]
+
+    return all_words
+
    
 def valid_word(word):
 
@@ -35,3 +49,7 @@ def valid_word(word):
             return False
 
     return True
+
+if __name__=="__main__":
+    inaugural_words = get_inaugural_words()
+    print(inaugural_words[0:100])
