@@ -1,3 +1,4 @@
+# -*- coding: future_fstrings -*-
 from generate_target_sents import get_inaugural_words
 import attack
 import os
