@@ -14,8 +14,8 @@ import torchaudio
 from torch import Tensor
 import pandas as pd
 
-from src.utils import get_git_root
-from src.Preprocessing.pre_processing import resample_audio
+from utils import get_git_root
+from Preprocessing.pre_processing import resample_audio
 
 ######### ------------------ PATHING ------------- ############
 """Specify path to TEDLIUM directory"""
