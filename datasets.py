@@ -19,7 +19,7 @@ from Preprocessing.pre_processing import resample_audio
 
 ######### ------------------ PATHING ------------- ############
 """Specify path to TEDLIUM directory"""
-data_paths = os.path.join(get_git_root(os.getcwd()), 'src' ,'Data')
+data_paths = os.path.join(get_git_root(os.getcwd()) ,'Data')
 DATASET_TEDLIUM_PATH = data_paths
 DATASET_MLCOMMONS_PATH = data_paths
 KEYWORDS_LINK_CSV_PATH = os.path.join(data_paths, "KeywordPerSample", "keywords.csv")
