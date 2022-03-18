@@ -30,6 +30,7 @@ def main():
         ted_results = x.get(i, sampling_rate=44100)
         
         # Extract the necessary information from the pandas dataframe
+        print(ted_results["TED_waveform"])
         sample_waveform = ted_results["TED_waveform"].to_numpy()
         print(sample_waveform.shape)
         sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
