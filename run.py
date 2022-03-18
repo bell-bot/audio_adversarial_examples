@@ -32,7 +32,7 @@ def main():
         # Extract the necessary information from the pandas dataframe
         sample_waveform = ted_results["TED_waveform"][0]
         sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
-        print(sample_waveform.shape)
+        print(type(sample_waveform))
         sample_transcript = ted_results["TED_transcript"]
         sample_keyword = ted_results["keyword"]
         sample_subset = ted_results["TED_talk_id"]
