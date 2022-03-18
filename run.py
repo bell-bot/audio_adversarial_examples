@@ -38,7 +38,7 @@ def main():
         sample_keyword = ted_results["keyword"][0]
         sample_subset = ted_results["TED_talk_id"][0]
         sample_id = "adversarial_" + str(i)
-        sample_rate = ["TED_waveform"][0]
+        sample_rate = ted_results["TED_waveform"][0]
         start_time = ted_results["keyword_start_time"][0]
         end_time = ted_results["keyword_end_time"][0]
         confidence = ted_results["confidence"][0]
