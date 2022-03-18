@@ -35,16 +35,16 @@ def main():
         sample_waveform = ted_results["TED_waveform"][0]
         print(sample_waveform.shape)
         sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
-        sample_transcript = ted_results["TED_transcript"][0]
-        sample_keyword = ted_results["keyword"][0]
-        sample_subset = ted_results["TED_talk_id"][0]
+        sample_transcript = ted_results["TED_transcript"]
+        sample_keyword = ted_results["keyword"]
+        sample_subset = ted_results["TED_talk_id"]
         sample_id = "adversarial_" + str(i)
-        sample_rate = ted_results["TED_waveform"][0]
-        start_time = ted_results["keyword_start_time"][0]
-        end_time = ted_results["keyword_end_time"][0]
-        confidence = ted_results["confidence"][0]
+        sample_rate = ted_results["TED_waveform"]
+        start_time = ted_results["keyword_start_time"]
+        end_time = ted_results["keyword_end_time"]
+        confidence = ted_results["confidence"]
         out_filename = f"Data/adversarial/{sample_id}.wav" 
-        keyword_id = ted_results["MSWC_ID"][0]
+        keyword_id = ted_results["MSWC_ID"]
 
         # Define a file to temporarly store the original audio in
         filename = "temp.wav"
