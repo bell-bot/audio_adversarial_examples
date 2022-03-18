@@ -30,8 +30,8 @@ def main():
         ted_results = x.get(i, sampling_rate=44100)
         
         # Extract the necessary information from the pandas dataframe
-        sample_waveform = ted_results["TED_waveform"]
-        sample_waveform = sample_waveform.reshape(sample_waveform.to_numpy().shape[1],1)
+        sample_waveform = ted_results["TED_waveform"].to_numpy()
+        sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
         sample_transcript = ted_results["TED_transcript"]
         sample_keyword = ted_results["keyword"]
         sample_subset = ted_results["TED_talk_id"]
