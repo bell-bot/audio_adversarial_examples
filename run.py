@@ -28,7 +28,6 @@ def main():
     for i in range(num_files):
         # Get information for a single tedlium audio file
         ted_results = x.get(i, sampling_rate=44100)
-        print(ted_results)
         
         # Extract the necessary information from the pandas dataframe
         sample_waveform = ted_results["TED_waveform"][0]
@@ -38,7 +37,7 @@ def main():
         sample_keyword = ted_results["keyword"]
         sample_subset = ted_results["TED_talk_id"]
         sample_id = "adversarial_" + str(i)
-        sample_rate = ted_results["TED_waveform"]
+        sample_rate = ted_results["TED_sample_rate"]
         start_time = ted_results["keyword_start_time"]
         end_time = ted_results["keyword_end_time"]
         confidence = ted_results["confidence"]
