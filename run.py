@@ -27,7 +27,7 @@ def main():
 
     for i in range(num_files):
         # Get information for a single tedlium audio file
-        ted_results = x.get(i,sampling_rate=44100)
+        ted_results = x.get(i)
         
         # Extract the necessary information from the pandas dataframe
         sample_waveform = ted_results["TED_waveform"][0]
@@ -45,7 +45,7 @@ def main():
 
         # Define a file to temporarly store the original audio in
         filename = "temp.wav"
-        wav_file = AudioArrayClip(sample_waveform, fps = 44100)
+        wav_file = AudioArrayClip(sample_waveform, fps = sample_rate)
         wav_file.write_audiofile(filename)
         
         # Get n words from the inaugural dataset, where n corresponds to the length of the transcript
