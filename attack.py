@@ -361,4 +361,4 @@ def main(inp = [], target = None, out = "", iterations = None, restore_path = "d
                                            -2**15, 2**15-1),dtype=np.int16))
                 print("Final distortion", np.max(np.abs(deltas[i][:lengths[i]]-audios[i][:lengths[i]])))
               
-        tf.get_variable_scope().reuse_variables()
+        sess.close()
