@@ -49,7 +49,8 @@ def main():
         wav_file.write_audiofile(filename)
         
         # Get n words from the inaugural dataset, where n corresponds to the length of the transcript
-        target = inaugural_words[inaugural_counter:inaugural_counter+len(sample_transcript)]
+        target = " ".join(inaugural_words[inaugural_counter:inaugural_counter+len(sample_transcript)])
+        print(type(target), target)
         inaugural_counter = inaugural_counter+len(sample_transcript)
 
         attack.main(inp = [filename], target = " ".join(target), out = out_filename, iterations = 10)
