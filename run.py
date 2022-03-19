@@ -21,7 +21,7 @@ def main():
     label_file = open(label_filename, "w")
     label_file.write(headers)
 
-    x = CTRLF_DatasetWrapper()
+    x = CTRLF_DatasetWrapper(sample_rate=44100)
 
     num_files = 1
 
@@ -45,7 +45,7 @@ def main():
 
         # Define a file to temporarly store the original audio in
         filename = "temp.wav"
-        wav_file = AudioArrayClip(sample_waveform, fps = sample_rate)
+        wav_file = AudioArrayClip(sample_waveform, fps = 44100)
         wav_file.write_audiofile(filename)
         
         # Get n words from the inaugural dataset, where n corresponds to the length of the transcript
