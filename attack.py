@@ -139,6 +139,8 @@ class Attack:
 
         # Decoder from the logits, to see how we're doing
         self.decoded, _ = tf.nn.ctc_beam_search_decoder(logits, lengths, merge_repeated=False, beam_width=100)
+        
+        sess.close()
 
     def attack(self, audio, lengths, target, finetune=None):
         sess = self.sess
