@@ -21,13 +21,13 @@ def main():
     label_file = open(label_filename, "w")
     label_file.write(headers)
 
-    x = CTRLF_DatasetWrapper(sample_rate=44100)
+    x = CTRLF_DatasetWrapper()
 
     num_files = 1
 
     for i in range(num_files):
         # Get information for a single tedlium audio file
-        ted_results = x.get(i)
+        ted_results = x.get(i,sample_rate=44100)
         
         # Extract the necessary information from the pandas dataframe
         sample_waveform = ted_results["TED_waveform"][0]
