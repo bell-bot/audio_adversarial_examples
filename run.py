@@ -5,6 +5,7 @@ import os
 import datasets
 from datasets import CTRLF_DatasetWrapper
 from moviepy.audio.AudioClip import AudioArrayClip
+import tensorflow as tf
 
 def main():
     # Load the inaugural words as targets
@@ -65,5 +66,7 @@ def main():
         # Save the information to the csv file
         label_row = f"{sample_keyword},{sample_id},{sample_subset},{sample_id},{keyword_id},{start_time},{end_time},{confidence}"
         label_file.write(label_row)
+
+        tf.get_variable_scope().reuse_variables()
 
 main()
