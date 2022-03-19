@@ -58,7 +58,7 @@ def main():
         print(type(target), target)
         inaugural_counter = inaugural_counter+len(sample_transcript)
 
-        attack.main(inp = [filename], target = target, out = out_filename, iterations = 2)
+        attack.main(inp = [filename], target = target, out = out_filename, iterations = 1)
 
         # Delete the temp file
         os.remove(filename)
@@ -67,6 +67,5 @@ def main():
         label_row = f"{sample_keyword},{sample_id},{sample_subset},{sample_id},{keyword_id},{start_time},{end_time},{confidence}"
         label_file.write(label_row)
 
-        tf.get_variable_scope().reuse_variables()
 
 main()

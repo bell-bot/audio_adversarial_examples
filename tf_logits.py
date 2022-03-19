@@ -99,4 +99,6 @@ def get_logits(new_input, length, first=[]):
 
     logits, _ = DeepSpeech.BiRNN(features, length, [0]*10)
 
+    tf.get_variable_scope().reuse_variables()
+
     return logits
