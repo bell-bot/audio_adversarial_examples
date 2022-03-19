@@ -266,6 +266,8 @@ def main(inp = [], target = None, out = "", iterations = None, restore_path = "d
     For now we only support using CTC loss and only generating
     one adversarial example at a time.
     """
+    
+    tf.reset_default_graph()
     parser = argparse.ArgumentParser(description=None)
     parser.add_argument('--in', type=str, dest="input", nargs='+',
                         required=False,
