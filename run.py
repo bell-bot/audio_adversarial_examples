@@ -10,7 +10,7 @@ def main():
     # Load the inaugural words as targets
     inaugural_words = get_inaugural_words()
     # counter to keep track of the index within inaugural words
-    inaugural_counter = 0
+    inaugural_counter = 1
 
     # Specify name of the out file
     label_filename = "labels.csv"
