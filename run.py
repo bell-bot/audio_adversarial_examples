@@ -57,7 +57,7 @@ def main():
         print(type(target), target)
         inaugural_counter = inaugural_counter+len(sample_transcript)
 
-        attack.main(inp = [filename], target = target, out = out_filename, iterations = 1000)
+        attack.main(inp = [filename], target = target, out = out_filename, iterations = 2)
 
         # Delete the temp file
         os.remove(filename)
