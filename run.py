@@ -23,7 +23,7 @@ def main():
 
     x = CTRLF_DatasetWrapper()
 
-    num_files = 1
+    num_files = 1000
 
     for i in range(num_files):
         # Get information for a single tedlium audio file
