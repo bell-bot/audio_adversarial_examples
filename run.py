@@ -49,7 +49,11 @@ def main():
         wav_file.write_audiofile(filename)
         
         # Get n words from the inaugural dataset, where n corresponds to the length of the transcript
-        target = " ".join(inaugural_words[inaugural_counter:inaugural_counter+len(sample_transcript)])
+        target = ""
+        while True:
+            target = " ".join(inaugural_words[inaugural_counter:inaugural_counter+len(sample_transcript)])
+            if not(target == "-"):
+                break
         print(type(target), target)
         inaugural_counter = inaugural_counter+len(sample_transcript)
 
@@ -60,5 +64,6 @@ def main():
 
         # Save the information to the csv file
         label_row = f"{sample_keyword},{sample_id},{sample_subset},{sample_id},{keyword_id},{start_time},{end_time},{confidence}"
+        label_file.write(label_row)
 
 main()
