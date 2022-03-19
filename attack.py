@@ -139,8 +139,6 @@ class Attack:
 
         # Decoder from the logits, to see how we're doing
         self.decoded, _ = tf.nn.ctc_beam_search_decoder(logits, lengths, merge_repeated=False, beam_width=100)
-        
-        sess.close()
 
     def attack(self, audio, lengths, target, finetune=None):
         sess = self.sess
@@ -256,7 +254,7 @@ class Attack:
                     wav.write("/tmp/adv.wav", 16000,
                               np.array(np.clip(np.round(new_input[ii]),
                                                -2**15, 2**15-1),dtype=np.int16))
-
+        sess.close()
         return final_deltas
     
     
