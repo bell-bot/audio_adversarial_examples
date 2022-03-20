@@ -26,7 +26,7 @@ def main():
 
     num_files = 1000
 
-    for i in range(num_files):
+    for i in range(10,num_files):
         # Get information for a single tedlium audio file
         ted_results = x.get(i)
         
