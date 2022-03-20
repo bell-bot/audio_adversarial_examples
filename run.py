@@ -19,7 +19,7 @@ def main():
     headers = "Keyword, TEDLIUM_SampleID, TED_TALK_ID, TEDLIUM_SET, MSWC_AudioID, start_time, end_time, confidence"
 
     # Open out file and populate with headers
-    label_file = open(label_filename, "w")
+    label_file = open(label_filename, "a")
     label_file.write(headers)
 
     x = CTRLF_DatasetWrapper()
