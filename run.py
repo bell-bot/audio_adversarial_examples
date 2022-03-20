@@ -26,46 +26,49 @@ def main():
 
     num_files = 1000
 
-    for i in range(10,num_files):
-        # Get information for a single tedlium audio file
-        ted_results = x.get(i)
-        
-        # Extract the necessary information from the pandas dataframe
-        sample_waveform = ted_results["TED_waveform"][0]
-        sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
-        sample_transcript = ted_results["TED_transcript"]
-        sample_keyword = ted_results["keyword"]
-        sample_subset = ted_results["TED_talk_id"]
-        sample_id = "adversarial_" + str(i)
-        sample_rate = ted_results["TED_sample_rate"][0]
-        start_time = ted_results["keyword_start_time"]
-        end_time = ted_results["keyword_end_time"]
-        confidence = ted_results["confidence"]
-        out_filename = f"Data/adversarial/{sample_id}.wav" 
-        keyword_id = ted_results["MSWC_ID"]
+    for i in range(16,num_files):
+        try:
+            # Get information for a single tedlium audio file
+            ted_results = x.get(i)
 
-        # Define a file to temporarly store the original audio in
-        filename = "temp.wav"
-        wav_file = AudioArrayClip(sample_waveform, fps = sample_rate)
-        wav_file.write_audiofile(filename)
-        
-        # Get n words from the inaugural dataset, where n corresponds to the length of the transcript
-        target = ""
-        while True:
-            target = " ".join(inaugural_words[inaugural_counter:inaugural_counter+len(sample_transcript)])
-            if not(target == "-"):
-                break
-        print(type(target), target)
-        inaugural_counter = inaugural_counter+len(sample_transcript)
+            # Extract the necessary information from the pandas dataframe
+            sample_waveform = ted_results["TED_waveform"][0]
+            sample_waveform = sample_waveform.reshape(sample_waveform.shape[1],1)
+            sample_transcript = ted_results["TED_transcript"]
+            sample_keyword = ted_results["keyword"]
+            sample_subset = ted_results["TED_talk_id"]
+            sample_id = "adversarial_" + str(i)
+            sample_rate = ted_results["TED_sample_rate"][0]
+            start_time = ted_results["keyword_start_time"]
+            end_time = ted_results["keyword_end_time"]
+            confidence = ted_results["confidence"]
+            out_filename = f"Data/adversarial/{sample_id}.wav" 
+            keyword_id = ted_results["MSWC_ID"]
 
-        attack.main(inp = [filename], target = target, out = out_filename, iterations = 1000)
+            # Define a file to temporarly store the original audio in
+            filename = "temp.wav"
+            wav_file = AudioArrayClip(sample_waveform, fps = sample_rate)
+            wav_file.write_audiofile(filename)
 
-        # Delete the temp file
-        os.remove(filename)
+            # Get n words from the inaugural dataset, where n corresponds to the length of the transcript
+            target = ""
+            while True:
+                target = " ".join(inaugural_words[inaugural_counter:inaugural_counter+len(sample_transcript)])
+                if not(target == "-"):
+                    break
+            print(type(target), target)
+            inaugural_counter = inaugural_counter+len(sample_transcript)
 
-        # Save the information to the csv file
-        label_row = f"{sample_keyword},{sample_id},{sample_subset},{sample_id},{keyword_id},{start_time},{end_time},{confidence}"
-        label_file.write(label_row)
+            attack.main(inp = [filename], target = target, out = out_filename, iterations = 1000)
+
+            # Delete the temp file
+            os.remove(filename)
+
+            # Save the information to the csv file
+            label_row = f"{sample_keyword},{sample_id},{sample_subset},{sample_id},{keyword_id},{start_time},{end_time},{confidence}"
+            label_file.write(label_row)
+        except:
+            continue
 
 
 main()
