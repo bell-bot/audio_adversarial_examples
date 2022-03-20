@@ -267,7 +267,7 @@ def main(inp = [], target = None, out = "", iterations = None, restore_path = "d
     one adversarial example at a time.
     """
     
-    tf.reset_default_graph()
+    #tf.reset_default_graph()
     parser = argparse.ArgumentParser(description=None)
     parser.add_argument('--in', type=str, dest="input", nargs='+',
                         required=False,
