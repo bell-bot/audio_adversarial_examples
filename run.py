@@ -11,7 +11,7 @@ def main():
     # Load the inaugural words as targets
     inaugural_words = get_inaugural_words()
     # counter to keep track of the index within inaugural words
-    inaugural_counter = 1
+    inaugural_counter = 100
 
     # Specify name of the out file
     label_filename = "labels.csv"
@@ -26,7 +26,7 @@ def main():
 
     num_files = 1000
 
-    for i in range(16,num_files):
+    for i in range(24,num_files):
         try:
             # Get information for a single tedlium audio file
             ted_results = x.get(i)
