@@ -26,7 +26,8 @@ def main():
 
     num_files = 1000
 
-    for i in range(101,num_files):
+    for i in range(100,num_files):
+        print("Audio Sample ID: " , i)
         try:
             # Get information for a single tedlium audio file
             ted_results = x.get(i)
@@ -67,7 +68,9 @@ def main():
             # Save the information to the csv file
             label_row = f"{sample_keyword},{sample_id},{sample_subset},{sample_id},{keyword_id},{start_time},{end_time},{confidence}"
             label_file.write(label_row)
-        except:
+        except Exception as exc:
+            print("Exception at Audio Sample ID: ", i)
+            print("Exception message: ", exc) 
             continue
 
 
